@@ -5804,11 +5804,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lukyb\\source\\repos\\Bookstore5\\Bookstore5\\Bookstore5.csproj",
+      "projectUniqueName": "C:\\Users\\lukyb\\Desktop\\IS413\\bookstore\\Bookstore5\\Bookstore5.csproj",
       "projectName": "Bookstore5",
-      "projectPath": "C:\\Users\\lukyb\\source\\repos\\Bookstore5\\Bookstore5\\Bookstore5.csproj",
+      "projectPath": "C:\\Users\\lukyb\\Desktop\\IS413\\bookstore\\Bookstore5\\Bookstore5.csproj",
       "packagesPath": "C:\\Users\\lukyb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lukyb\\source\\repos\\Bookstore5\\Bookstore5\\obj\\",
+      "outputPath": "C:\\Users\\lukyb\\Desktop\\IS413\\bookstore\\Bookstore5\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lukyb\\AppData\\Roaming\\NuGet\\NuGet.Config",
