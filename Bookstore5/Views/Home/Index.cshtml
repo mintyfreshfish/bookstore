@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BookListViewModel
+
+<header>
+
+    <h1 class="text-center display-2">Welcome to the Bookstore!</h1>
+
+</header>
+
+<br /><br /><br /><br />
+
+<div id="accordion"> <!--I'm going to be honest, I'm pretty sure this line doesn't need to be here, but it's not breaking anything-->
+    @foreach (var x in Model.Books)
+    {
+
+    <!--the idea is a list of titles/authors that, when clicked, expand to show more information-->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <a class="btn" data-toggle="collapse" href="#@x.LastName" aria-expanded="true" aria-controls="collapseOne" style="box-shadow: none;"> <!--you do not know how much time I spent trying to hunt down the box-shadow in the bootstrap.css.min file. It doesn't matter what you change. The box-shadow is forever.-->
+                    <h1 class="display-4 row">@x.Title</h1>
+                    <p class="lead row">By @x.FirstName @x.LastName</p>
+                </a>
+            </h5>
+        </div>
+        <div id="@x.LastName" class="collapse" aria-labelledby=@x.BookId data-parent="#accordion"> <!--This is a terrible solution to make cards with unique ids. "but what if the authors have the same last name?" you may ask, to which i reply "I didn't want to make another data entry into my model, so suck it"-->
+            <div class="card-body pl-5">
+                <p class="row">Publisher: @x.Publisher</p>
+                <p class="row">ISBN: @x.ISBN</p>
+                <p class="row">Classification: @x.Class</p>
+                <p class="row">Category: @x.Category</p>
+                <p class="row">Price: $@x.Price</p>
+                <p class="row">Pages: @x.Pages</p>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    }
+    </div>
+
+    <div page-model="@Model.PagingInfo" page-action="Index"></div> <!--this is the annoying pagination bit-->
