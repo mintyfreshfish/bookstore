@@ -1,0 +1,29 @@
+﻿<!--This page is the partial view for index that shows all the book cards-->
+
+@Model Project 
+
+<!--the idea is a list of titles/authors that, when clicked, expand to show more information-->
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">
+            <a class="btn" data-toggle="collapse" href="#@Model.LastName" aria-expanded="true" aria-controls="collapseOne" style="box-shadow: none;">
+                <!--you do not know how much time I spent trying to hunt down the box-shadow in the bootstrap.css.min file. It doesn't matter what you change. The box-shadow is forever.-->
+                <h1 class="display-4 row">@Model.Title</h1>
+                <p class="lead row">By @Model.FirstName @Model.LastName</p>
+            </a>
+        </h5>
+    </div>
+    <div id="@Model.LastName" class="collapse" aria-labelledby=@Model.BookId data-parent="#accordion">
+        <!--This is a terrible solution to make cards with unique ids. "but what if the authors have the same last name?" you may ask, to which i reply "I didn't want to make another data entry into my model, so suck it"-->
+        <div class="card-body pl-5">
+            <p class="row">Publisher: @Model.Publisher</p>
+            <p class="row">ISBN: @Model.ISBN</p>
+            <p class="row">Classification: @Model.Class</p>
+            <p class="row">Category: @Model.Category</p>
+            <p class="row">Price: $@Model.Price</p>
+            <p class="row">Pages: @Model.Pages</p>
+        </div>
+    </div>
+</div>
+<br />
+<br />

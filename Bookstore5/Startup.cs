@@ -55,14 +55,30 @@ namespace Bookstore5
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints => //What do we want our URL to look like, and where do we want to send the user when he/she types it in
             {
-                endpoints.MapControllerRoute(
+                endpoints.MapControllerRoute("catpage", //URL if category and page inputted. {} denote variables. The gist of this is that we can keep the category filter as we navigate to different pages
+                    "{category}/{page:int}",
+                    new { Controller = "Home", action = "Index" }
+                    );
+
+                endpoints.MapControllerRoute("page", //URL if only a page (no category)
+                    "{page:int}",
+                    new { Controller = "Home", action = "Index" }
+                    );
+
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page = 1 }
+                    );
+
+                endpoints.MapControllerRoute( //pagination URLs
                     "pagination",
                     "/P{page}",
-                    new { Controller = "Home", action = "Index" });
+                    new { Controller = "Home", action = "Index" }
+                    );
 
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapDefaultControllerRoute(); //default
             });
 
             SeedData.EnsurePopulated(app);

@@ -18,28 +18,32 @@ namespace Bookstore5.Controllers
             
         public int pageSize = 5; //how many items per page
 
-        public HomeController(ILogger<HomeController> logger, IBookstoreRepository repository)
+        public HomeController(ILogger<HomeController> logger, IBookstoreRepository repository) //"please collect the dataset from the repository"
         {
             _logger = logger;
             _repository = repository;
 
         }
 
-        public IActionResult Index(int page = 1) //pass in first page number for index
+        public IActionResult Index(string category, int page = 1) // put in page number (1 at load) and category type
         {
-            return View(new BookListViewModel
+            return View(new BookListViewModel //"please make the BookListViewModel based on the repository"
             {
-                Books = _repository.Books //decides which books to show. Uses Link as queries
+                Books = _repository.Books //decides which books to show. Uses Linc as queries
+                .Where(p => category == null || p.Category == category) //only show what we want filtered
                 .OrderBy(b => b.BookId)
-                .Skip((page - 1) * pageSize) //uses indexes so the -1 works
+                .Skip((page - 1) * pageSize)
                 .Take(pageSize),
 
-                PagingInfo = new PagingInfo // refers to pagingInfo class to return the correct data for the view
+                PagingInfo = new PagingInfo //"please make the PagingInfo model based on the repository"
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalNumItems = _repository.Books.Count()
-                }
+                    TotalNumItems = category == null ? _repository.Books.Count() :
+                        _repository.Books.Where(x => x.Category == category).Count() //this makes it so the pagination doesn't always show the max pages like the dumbfu** it is
+                },
+
+                CurrentCategory = category // sets the category based on filter choice
             });
         }
 

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<string>
+
+<a class="btn btn-block btn-outline-secondary" asp-action="Index" asp-controller="Home"
+   asp-route-category="">
+    Home
+</a>
+
+@foreach (string category in Model)
+{
+    <a class="btn col-sm 
+@(category == ViewBag.SelectedCategory ? "btn-primary" : "btn-outline-secondary") <!--this is spectacular. It checks if the category in the menu matches the category we are viewing and it assigns classes based on that info. SpecTACular.-->
+       asp-action="Index" asp-controller="Home"
+       asp-route-category="@category"
+       asp-route-page="1">
+        @category
+    </a>
+}
+
+<!--
+    alright children, lets break it down:
+    This is a partial view, so it's gonna show up as a little piece of a different view
+    This view, specifically, is a nav menu, as you can see from all the a-tags
+    So what's the big block in the center?
+    It's going through the model of categories (remember the component?) and printing the categories for the menu.
+    Yep. That simple.
+-->

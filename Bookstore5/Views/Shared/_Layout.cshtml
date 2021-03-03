@@ -10,8 +10,15 @@
 </head>
 
 <body>
+        <div class="row">
+            <vc:navigation-menu /> <!--this the view componenet found in the components page. It's kinda like a partial view, except not really. To tell the truth, I don't know the difference besides that this has ViewComponent at the end of its name-->
+
+        </div>
     <div class="container">
+
         <main role="main" class="pb-3">
+
+
             @RenderBody()
         </main>
     </div>

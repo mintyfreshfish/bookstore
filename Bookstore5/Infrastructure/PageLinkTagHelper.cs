@@ -28,6 +28,9 @@ namespace Bookstore5.Infrastructure
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
 
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
@@ -45,8 +48,11 @@ namespace Bookstore5.Infrastructure
                 TagBuilder listit = new TagBuilder("li");
                 listit.Attributes["class"] = "page-item";
                 TagBuilder tag = new TagBuilder("a");
+
+                PageUrlValues["page"] = i;
+
                 tag.Attributes["class"] = "page-link";
-                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
+                tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
                 tag.InnerHtml.Append(i.ToString());
 
                 listit.InnerHtml.AppendHtml(tag);

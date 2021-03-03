@@ -77,3 +77,5 @@ C:\Users\lukyb\source\repos\Bookstore5\Bookstore5\obj\Debug\netcoreapp3.1\Bookst
 C:\Users\lukyb\source\repos\Bookstore5\Bookstore5\obj\Debug\netcoreapp3.1\Bookstore5.dll
 C:\Users\lukyb\source\repos\Bookstore5\Bookstore5\obj\Debug\netcoreapp3.1\Bookstore5.pdb
 C:\Users\lukyb\source\repos\Bookstore5\Bookstore5\obj\Debug\netcoreapp3.1\Bookstore5.genruntimeconfig.cache
+C:\Users\lukyb\source\repos\Bookstore5\Bookstore5\obj\Debug\netcoreapp3.1\Razor\Views\Home\EncapsulatedBooklist.cshtml.g.cs
+C:\Users\lukyb\source\repos\Bookstore5\Bookstore5\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\NavigationMenu\Default.cshtml.g.cs

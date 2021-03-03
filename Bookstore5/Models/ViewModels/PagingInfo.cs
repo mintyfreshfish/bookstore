@@ -1,4 +1,6 @@
-﻿using System;
+﻿//viewModels are...you guessed it, models made for specific views
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
