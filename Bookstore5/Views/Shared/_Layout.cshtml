@@ -6,14 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Assignment5</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> <!--import bootstrap-->
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
 <body>
-        <div class="row">
-            <vc:navigation-menu /> <!--this the view componenet found in the components page. It's kinda like a partial view, except not really. To tell the truth, I don't know the difference besides that this has ViewComponent at the end of its name-->
-
+    <div class="bg-dark text-white p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">THIS IS A STORE FOR BOOKS...WITH PAGES...PHYSICAL PAGES...THE ONES YOU READ WITH YOUR EYES AND BRAIN...BUT NOT ON A SCREEN...THESE ARE NOT DIGITAL THEY ARE REAL BOOKS</div>
+                <div class="col-12 text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <vc:navigation-menu /> <!--this the view componenet found in the components page. It's kinda like a partial view, except not really. To tell the truth, I don't know the difference besides that this has ViewComponent at the end of its name-->
+
+    </div>
     <div class="container">
 
         <main role="main" class="pb-3">

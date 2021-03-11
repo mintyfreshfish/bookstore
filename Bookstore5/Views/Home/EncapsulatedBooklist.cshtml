@@ -1,6 +1,5 @@
-﻿<!--This page is the partial view for index that shows all the book cards-->
-
-@Model Project 
+﻿@model Book 
+<!--This page is the partial view for index that shows all the book cards-->
 
 <!--the idea is a list of titles/authors that, when clicked, expand to show more information-->
 <div class="card">
@@ -23,6 +22,16 @@
             <p class="row">Price: $@Model.Price</p>
             <p class="row">Pages: @Model.Pages</p>
         </div>
+        <form id="@Model.BookId" asp-page="/Buy" method="post"> <!--this makes the buying button-->
+            <input type="hidden" asp-for="@Model.BookId"/>
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <span class="card-text p-1">
+                  @Model.Title
+                  <button type="submit" class="btn-success btn-sm pull-right" style="float:right">
+                      Buy Now!
+                  </button>
+            </span>
+        </form>
     </div>
 </div>
 <br />

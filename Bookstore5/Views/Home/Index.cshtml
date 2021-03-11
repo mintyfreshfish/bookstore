@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model BookListViewModel 
+@model BookListViewModel
     <!--this was built by the home controller-->
 
 <header>
@@ -11,20 +11,22 @@
 
 </header>
 
-<br /><br /><br /><br />
+<br />
+<br />
+<br />
+<br />
 
 <div id="accordion">
-        <!--pull out the "books" part of the BookListViewModel and set it as x-->
-    @foreach (var x in Model.Books) 
+    <!--pull out the "books" part of the BookListViewModel and set it as x-->
+    @foreach (var x in Model.Books)
     {
         <partial name="EncapsulatedBooklist" model="x" /> <!--this is a partial view from EncapsulatedBooklist, which holds all of the looped stuff. We pass in model x because that's the iteration for each loop-->
     }
-    </div>
+</div>
 
-    <div page-model="@Model.PagingInfo" page-action="Index" page-url-category="@Model.CurrentCategory"> <!--this stores the categories in the dictionary. Don't worry. That makes sense.-->
-        </div> <!--this is the annoying pagination bit-->
-
-
+<div page-model="@Model.PagingInfo" page-action="Index" page-url-category="@Model.CurrentCategory">
+    <!--this stores the categories in the dictionary. Don't worry. That makes sense.-->
+</div> <!--this is the annoying pagination bit-->
 <!--
 NOTES
     encapsulation: breaking things into pieces for organization

@@ -1,6 +1,7 @@
 using Bookstore5.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,10 +30,17 @@ namespace Bookstore5
 
             services.AddDbContext<BookstoreContext>(options => // this builds the books database upon webpage load
             {
-                options.UseSqlServer(Configuration.GetConnectionString("BooksConnection"));
+                options.UseSqlite(Configuration["ConnectionStrings:BooksConnection"]);
             });
 
             services.AddScoped<IBookstoreRepository, BookstoreRepository>();
+
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(); //these build the sessions, which stores stuff in the cache and makes the stuff in the cart "stick" past a refresh or page change
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +58,8 @@ namespace Bookstore5
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession(); //makes the Session stuff work (See above)
 
             app.UseRouting();
 
@@ -79,9 +89,12 @@ namespace Bookstore5
                     );
 
                 endpoints.MapDefaultControllerRoute(); //default
+
+                endpoints.MapRazorPages(); // adds routing for the razor pages
             });
 
             SeedData.EnsurePopulated(app);
+
         }
     }
 }

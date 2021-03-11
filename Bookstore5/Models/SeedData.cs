@@ -15,12 +15,12 @@ namespace Bookstore5.Models
             BookstoreContext context = application.ApplicationServices.
                 CreateScope().ServiceProvider.GetRequiredService<BookstoreContext>();
 
-            if (context.Database.GetPendingMigrations().Any())
+            if (context.Database.GetPendingMigrations().Any()) //if there are any migrations, migrate
             {
                 context.Database.Migrate();
             }
 
-            if (!context.Books.Any())
+            if (!context.Books.Any()) //if there is nothing in the database, put these into the database
             {
                 context.Books.AddRange(
 
